@@ -63,7 +63,7 @@ void drum_init()
         rgb_out(translate_to_prog(i + 84), colors[3][0], colors[3][1], colors[3][2]);
     }
 
-    
+    rgb_out(99, drum_r, drum_g, drum_b);
 
 }
 

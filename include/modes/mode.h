@@ -17,8 +17,8 @@
 #define mode_programmer 3
 #include "modes/programmer.h"
 
-#define mode_live 4
-#include "modes/live.h"
+#define mode_drum 4
+#include "modes/drum.h"
 
 #define mode_editor 5
 #include "modes/editpalette.h"

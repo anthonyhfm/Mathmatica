@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/dvhdr/launchpad-pro.svg?branch=master)](https://travis-ci.org/dvhdr/launchpad-pro)
-
 # Launchpad Pro
 Open source firmware for the Novation Launchpad Pro grid controller!  By customising this code, you can:
 

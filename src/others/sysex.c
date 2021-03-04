@@ -1,6 +1,6 @@
 #include "others/sysex.h"
 
-const u8 check[6] = {240 ,126 ,127 ,6 ,1 , 247}; // I fucking hate Hex
+const u8 check[6] = {0x7E, 0x7F, 0x06, 0x01, 0xF7};
 const u8 check_response[17] = {240, 126, 0, 6, 2, 0, 32, 41, 81, 0, 0, 0, 0, 99, 102, 121, 247};
 
 void DeviceCheck(u8 port, u8 * data, u16 count)
@@ -29,31 +29,32 @@ void ApolloLED(u8 port, u8 * data, u16 count)
 {
     if (data[1] == 95) // Identifier for Apollo Fast LED
     {
-	for (u8* idata = data + 2; idata < (data + (count - 2));) 
+		for (u8* idata = data + 2; idata < (data + (count - 2));) 
         {
-		int color_data[3] = {*idata++, *idata++, *idata++};
+			int color_data[3] = {*idata++, *idata++, *idata++};
 
-		// BIT NN CALCULATION BY MAT1JACZYYY
-		int nn = ((color_data[0] & 64) >> 4) | ((color_data[1] & 64) >> 5) | ((color_data[2] & 64) >> 6);
-		if (nn == 0) nn = *idata++;
+			// BIT NN CALCULATION BY MAT1JACZYYY
+			int nn = ((color_data[0] & 64) >> 4) | ((color_data[1] & 64) >> 5) | ((color_data[2] & 64) >> 6);
+			if (nn == 0) nn = *idata++;
 
-		for (int i = 0; i < nn; i++) 
-		{
-			int p = *idata++;
-			if (p == 0) 
-				for (int x = 0; x < 99; x++) LED(x, color_data[0], color_data[1], color_data[2]); // Fill
-			else if (p <= 99) 
-				LED(p, color_data[0], color_data[1], color_data[2]); // Single
-			else if (p <= 109) 
+			for (int i = 0; i < nn; i++) 
 			{
-				p -= 100;
-				p *= 10;
-				p += 1;
+				int p = *idata++;
+				if (p == 0) 
+					for (int x = 0; x < 99; x++) LED(x, color_data[0], color_data[1], color_data[2]); // Fill
+				else if (p <= 99) 
+					LED(p, color_data[0], color_data[1], color_data[2]); // Single
+				else if (p <= 109) 
+				{
+					p -= 100;
+					p *= 10;
+					p += 1;
 
-				for (u8 x = p; x < p + 8; x++) LED(x, color_data[0], color_data[1], color_data[2]); // Row
+					for (u8 x = p; x < p + 8; x++) LED(x, color_data[0], color_data[1], color_data[2]); // Row
+				}
+				else if (p <= 119) 
+					for (u8 x = p - 100; x < 90; x = x + 10) LED(x, color_data[0], color_data[1], color_data[2]); // Column
 			}
-			else if (p <= 119) for (u8 x = p - 100; x < 90; x = x + 10) LED(x, color_data[0], color_data[1], color_data[2]); // Column
-				
 		}
 	}
 }
@@ -71,9 +72,6 @@ void PaletteUtil(u8 port, u8 * data, u16 count)
 		palette[3][1][p] = g;
 		palette[3][2][p] = b;
 	}
-	
-	// Example: 240, 42, <pitch>, <red>, <green>, <blue> 
-	// Yea, simple as that.
 }
 
 void NovationLED(u8 port, u8 * data, u16 count)
@@ -97,9 +95,28 @@ void NovationLED(u8 port, u8 * data, u16 count)
 	// Example: 240, 0, 32, 41, 2, 16, 11, <LED>, <Red>, <Green>, <Blue>, 247
 }
 
+void PluginLed(u8 port, u8 * data, u16 count) // Plugin RGB of SuperVelocity
+{
+	if(data[1] == 69)
+	{
+		u8 p = data[2];
+		u8 r = data[3];
+		u8 g = data[4];
+		u8 b = data[5];
+
+		if(mode == mode_legacy || mode == mode_programmer)
+		{
+			if(p == 99)
+				hal_plot_led(TYPESETUP, flip_led(p), r, g, b);
+			else
+				hal_plot_led(TYPEPAD, flip_led(p), r, g, b);
+		}
+	}
+}
+
 void HandleSysEx(u8 port, u8 * data, u16 count)
 {
-    	DeviceCheck(port, data, count);
+    DeviceCheck(port, data, count);
 	PaletteUtil(port, data, count);
 	ApolloLED(port, data, count);
 	PluginLed(port, data, count);

@@ -60,7 +60,6 @@ LDFLAGS += -T$(LDSCRIPT) -u _start -u _Minimum_Stack_Size  -mcpu=cortex-m3 -mthu
 
 all: $(SYX)
 
-# Mathmatica Build Tools changes the name from "Launchpad Open" to "Launchpad Math"
 # Bintosyx converting Binary CFW to SYX (SysEx) flashable file
 
 $(SYX): $(BIN)

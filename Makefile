@@ -41,7 +41,6 @@ SYX = $(BUILDDIR)/Mathmatica.syx
 ELF = $(BUILDDIR)/Mathmatica.elf
 BIN = $(BUILDDIR)/Mathmatica.bin
 BINTOSYX = $(TOOLS)/bintosyx
-MBT = $(TOOLS)/mbt
 
 # tools
 HOST_GPP = g++
@@ -65,7 +64,6 @@ all: $(SYX)
 # Bintosyx converting Binary CFW to SYX (SysEx) flashable file
 
 $(SYX): $(BIN)
-	./$(MBT) $(BIN)
 	./$(BINTOSYX) /pro 000 $(BIN) $(SYX)
 
 $(BIN): $(ELF)

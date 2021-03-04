@@ -1,6 +1,6 @@
 #include "others/sysex.h"
 
-const u8 check[6] = {0x7E, 0x7F, 0x06, 0x01, 0xF7};
+const u8 check[6] = {240 ,126 ,127 ,6 ,1 , 247}; // I fucking hate Hex
 const u8 check_response[17] = {240, 126, 0, 6, 2, 0, 32, 41, 81, 0, 0, 0, 0, 99, 102, 121, 247};
 
 void DeviceCheck(u8 port, u8 * data, u16 count)

@@ -221,6 +221,7 @@ void setup_init()
     rgb_out(19, programmer_r >> 2, programmer_g >> 2, programmer_b >> 2);
     rgb_out(8, chord_r >> 2, chord_g >> 2, chord_b >> 2);
     rgb_out(7, sequencer_r >> 2, sequencer_g >> 2, sequencer_b >> 2);
+    rgb_out(6, step_r >> 2, step_g >> 2, step_b >> 2);
 
     for(int i = 0; i < 4; i++) rgb_out(91 + i, 63 >> 2, 0, 0);
     rgb_out(91 + flip_index, 63, 0, 0);
@@ -241,6 +242,9 @@ void setup_init()
             break;
         case mode_sequencer:
             rgb_out(7, sequencer_r, sequencer_g, sequencer_b);
+            break;
+        case mode_step:
+            rgb_out(6, step_r, step_g, step_b);
             break;
         default:
             mode_default = mode_legacy;
@@ -312,6 +316,11 @@ void setup_surface_event(u8 p, u8 v, u8 x, u8 y)
             else if(p == 7)
             {
                 mode_default = mode_sequencer;
+                refresh();
+            }
+            else if(p == 6)
+            {
+                mode_default = mode_step;
                 refresh();
             }
             else if(p >= 91 && p <= 94)

@@ -55,6 +55,9 @@ void mode_init()
 		case mode_scale:
 			scale_init();
 			break;
+		case mode_step:
+			step_init();
+			break;
 	}
 }
 
@@ -88,6 +91,9 @@ void mode_timer_event()
 			break;
 		case mode_scale:
 			scale_timer_event();
+			break;
+		case mode_step:
+			step_timer_event();
 			break;
 	}
 };
@@ -123,6 +129,9 @@ void mode_surface_event(u8 p, u8 v, u8 x, u8 y)
 		case mode_scale:
 			scale_surface_event(p, v, x, y);
 			break;
+		case mode_step:
+			step_surface_event(p, v, x, y);
+			break;
 	}
 }
 
@@ -156,6 +165,9 @@ void mode_midi_event(u8 port, u8 t, u8 ch, u8 p, u8 v)
 			break;
 		case mode_scale:
 			scale_midi_event(port, t, ch, p, v);
+			break;
+		case mode_step:
+			step_midi_event(port, t, ch, p, v);
 			break;
 	}
 };

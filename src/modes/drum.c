@@ -8,6 +8,8 @@ const u8 colors[4][3] =
     {20, 63, 20}
 };
 
+u8 drum_grid_colors[100] = {};
+
 void drum_press(u8 p, u8 v)
 {
     if(translate_to_drum(p) > 35 && translate_to_drum(p) < 36 + 16)

@@ -32,6 +32,9 @@
 #define mode_scale 8
 #include "modes/scale.h"
 
+#define mode_step 9
+#include "modes/step.h"
+
 
 
 void mode_init();

@@ -52,8 +52,7 @@ void ApolloLED(u8 port, u8 * data, u16 count)
 
 					for (u8 x = p; x < p + 8; x++) LED(x, color_data[0], color_data[1], color_data[2]); // Row
 				}
-				else if (p <= 119) 
-					for (u8 x = p - 100; x < 90; x = x + 10) LED(x, color_data[0], color_data[1], color_data[2]); // Column
+				else if (p <= 119) for (u8 x = p - 100; x < 90; x = x + 10) LED(x, color_data[0], color_data[1], color_data[2]); // Column
 			}
 		}
 	}

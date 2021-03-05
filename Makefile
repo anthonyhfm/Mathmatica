@@ -25,7 +25,7 @@ BUILDDIR = build
 TOOLS = tools
 
 SOURCES += src/app.c
-SOURCES += src/modes/setup.c src/modes/legacy.c src/modes/programmer.c src/modes/drum.c src/modes/note.c src/modes/piano.c src/modes/editpalette.c src/modes/boot.c src/modes/live.c src/modes/chord.c src/modes/sequencer.c src/modes/scale.c
+SOURCES += src/modes/setup.c src/modes/legacy.c src/modes/programmer.c src/modes/drum.c src/modes/note.c src/modes/piano.c src/modes/editpalette.c src/modes/boot.c src/modes/live.c src/modes/chord.c src/modes/sequencer.c src/modes/scale.c src/modes/step.c
 SOURCES += src/modes/mode.c src/lighting/led.c src/others/translate.c src/others/out.c src/lighting/palette.c src/memory/manager.c src/memory/data.c src/others/sysex.c src/others/flip.c
 
 

@@ -59,8 +59,11 @@ Want a feature or report an issue? Submit an issue report on [GitHub's issue tra
 Don't like the firmware? You can simply reflash Novation's stock firmware over at [mat1jaczyyy's Launchpad Utility](https://fw.mat1jaczyyy.com) or you can use [Novation's firmware flasher](https://customer.novationmusic.com/en/support/downloads?brand=Novation&product_by_range=527&download_type=software).
 
 ## Credits
-- [203Null](https://github.com/203Null) ~ Inspiration for the spreadsheets guide.
 - [anthonyhfm](https://github.com/anthonyhfm) ~ The Mathmatica Project.
-- [EmilyLP](https://github.com/LaunchpadPhil) ~ Boot animation.
-- [mat1jaczyyy](https://github.com/mat1jaczyyy) ~ The README file.
+- [EmilyLP](https://github.com/EmilyLPad) ~ Boot animation.
 - [Pix3l_](https://github.com/WhosPix3l) ~ Making README file.
+
+### People who didnt directly commit:
+- [203Null](https://github.com/203Null) ~ Inspiration for the spreadsheets guide.
+- [mat1jaczyyy](https://github.com/mat1jaczyyy) ~ The README file.
+

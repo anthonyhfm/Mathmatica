@@ -2,6 +2,10 @@
 ### The performance-optimized, custom firmware. 
 This repository contains the source code of Mathmatica, a custom firmware for the Launchpad Pro [MK2]. The firmware includes the new, MK3 setup menu, and adds a few other Launchpad cover optimized modes. It brings faster light updating speed, and the new keyboard mode. The firmware is easy to install, free to use and works with every project and DAW.
 
+![GitHub language count](https://img.shields.io/github/languages/count/anthonyhfm/Mathmatica) 
+![Website status](https://img.shields.io/website?down_message=offline&up_color=blueviolet&up_message=online&url=https%3A%2F%2Fwww.314dragon.com%2F)
+![GitHub issues](https://img.shields.io/github/issues/anthonyhfm/Mathmatica)
+
 ## Install
 The simplest way to install is via the flasher tool. Simply download the contents of the [flasher folder](https://github.com/anthonyhfm/Mathmatica/tree/performance/flasher). 
 
@@ -52,18 +56,55 @@ Then to compile,
 make
 ```
 
-### Issues
+### On Debian Linux/Debian-based (Ubuntu, Pop!-OS, etc)
+First, install `make`:
+```
+sudo apt-get install build-essential
+```
+
+Next, install the GCC ARM Toolchain
+```
+sudo apt-get install gcc-arm-none-eabi binutils-arm-none-eabi gdb-arm-none-eabi openocd
+```
+
+Then to compile,
+```
+make
+```
+
+### On Arch Linux/Arch-based (Manjaro, EndeavourOS, etc)
+First, install `make`:
+```
+sudo pacman -Qg base-devel
+```
+
+Next, install the GCC ARM Toolchain
+```
+sudo pacman -S arm-none-eabi-gcc arm-none-eabi-binutils libmpc zlib arm-none-eabi-newlib gmp mpfr
+```
+
+Then to compile,
+```
+make
+```
+
+## Issues
 `¯\_(ツ)_/¯` You tell me.
 
-Want a feature or report an issue? Submit an issue report on [GitHub's issue tracker](https://github.com/anthonyhfm/Mathmatica/issues)!
-Don't like the firmware? You can simply reflash Novation's stock firmware over at [mat1jaczyyy's Launchpad Utility](https://fw.mat1jaczyyy.com) or you can use [Novation's firmware flasher](https://customer.novationmusic.com/en/support/downloads?brand=Novation&product_by_range=527&download_type=software).
+- Want a feature or report an issue? Submit an issue report on [GitHub's issue tracker](https://github.com/anthonyhfm/Mathmatica/issues)!
+- Don't like the firmware? You can simply reflash Novation's stock firmware over at [mat1jaczyyy's Launchpad Utility](https://fw.mat1jaczyyy.com) or you can use [Novation's firmware flasher](https://customer.novationmusic.com/en/support/downloads?brand=Novation&product_by_range=527&download_type=software).
 
 ## Credits
 - [anthonyhfm](https://github.com/anthonyhfm) ~ The Mathmatica Project.
 - [EmilyLP](https://github.com/EmilyLPad) ~ Boot animation.
 - [Pix3l_](https://github.com/WhosPix3l) ~ Making README file.
 
-### People who didnt directly commit:
+### People who didn't directly commit:
 - [203Null](https://github.com/203Null) ~ Inspiration for the spreadsheets guide.
-- [mat1jaczyyy](https://github.com/mat1jaczyyy) ~ The README file.
+- [mat1jaczyyy](https://github.com/mat1jaczyyy) ~ Inspiration for README file.
+- [Novation](https://github.com/Focusrite-Novation) ~ Launchpad Pro open-source firmware.
 
+## Find us!
+- [Discord](https://discord.com/invite/n7KHW5H)
+- [Instagram](https://instagram.com/314dragon)
+- [Website](https://314dragon.com)

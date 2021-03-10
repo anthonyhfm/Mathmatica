@@ -4,6 +4,7 @@ This repository contains the source code of Mathmatica, a custom firmware for th
 
 ![GitHub language count](https://img.shields.io/github/languages/count/anthonyhfm/Mathmatica) 
 ![Website status](https://img.shields.io/website?down_message=offline&up_color=blueviolet&up_message=online&url=https%3A%2F%2Fwww.314dragon.com%2F)
+![Discord](https://img.shields.io/discord/760499946792157215?color=4e5d94&label=discord)
 ![GitHub issues](https://img.shields.io/github/issues/anthonyhfm/Mathmatica)
 
 ## Install

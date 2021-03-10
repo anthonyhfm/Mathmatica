@@ -7,7 +7,7 @@ This repository contains the source code of Mathmatica, a custom firmware for th
 ![GitHub issues](https://img.shields.io/github/issues/anthonyhfm/Mathmatica)
 
 ## Install
-The simplest way to install is via the flasher tool. Simply download the contents of the [flasher folder](https://github.com/anthonyhfm/Mathmatica/tree/performance/flasher). 
+The simplest way to install is via the flasher tool. Simply download the contents of the [flasher folder](https://github.com/anthonyhfm/Mathmatica/tree/performance/flasher). While not necessary to do so, it is recommended for you to close all apps using the Launchpad Pro.
 
 An alternative way to do it is using [mat1jaczyyy's Launchpad Utility](https://fw.mat1jaczyyy.com/). To upload the Mathmatica firmware to [mat1jaczyyy's Launchpad Utility](https://fw.mat1jaczyyy.com/), press the following keys in the following sequence. [Up Arrow], [Up Arrow], [Down Arrow], [Down Arrow], [Left Arrow], [Right Arrow], [Left Arrow], [Right Arrow]. An option to use a custom SysEx file should appear. Upload the Mathmatica firmware file from the pop-up.
 

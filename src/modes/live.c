@@ -2,6 +2,17 @@
 
 u8 live_mode = 1;
 u8 custom_mode = 0;
+u8 note_shift = 0;
+
+u8 live_grid[100][3] = {};
+
+void setLiveLed(u8 p, u8 r, u8 g, u8 b)
+{
+	live_grid[p][0] = r;
+	live_grid[p][1] = g;
+	live_grid[p][2] = b;
+}
+
 
 void live_init()
 {
@@ -10,11 +21,28 @@ void live_init()
     switch(live_mode)
     {
         case live_session:
+            for(int i = 0; i < 100; i++) 
+            {
+                rgb_out(i, live_grid[i][0], live_grid[i][1], live_grid[i][2]);
+            }
+            for(int i = 0; i < 2; i++) rgb_out(97 - i, 63 >> 2, 63 >> 2, 63 >> 2);
             rgb_out(95, 0, 63, 0);
             break;
 
         case live_note:
-            rgb_out(96, 0, 63, 0);
+                rgb_out(96, 0, 63, 0);
+                if(note_shift)
+                {
+                    rgb_out(80, 63, 63, 63);
+                    rgb_out(96, 63, 32, 0);
+                }
+                else rgb_out(80, 32, 32, 32);
+                
+                for(int i = 0; i < 2; i++)
+                {
+                    rgb_out(91 + i, note_r, note_g, note_b);
+                    rgb_out(93 + i, 63, 0, 63);
+                }
             note_init();
             break;
 
@@ -54,7 +82,7 @@ void live_surface_event(u8 p, u8 v, u8 x, u8 y)
             update(mode_setup);
             return;
         }
-        else if(p == 95 && live_mode == live_note || p == 95 && live_mode == live_note)
+        else if(p == 95)
         {
             live_mode = live_session;
             refresh();
@@ -92,9 +120,27 @@ void live_surface_event(u8 p, u8 v, u8 x, u8 y)
         }
     }
 
+    if(live_mode == live_note)
+    {
+        if(v && note_shift && p == 96)
+        {
+            update(mode_scale);
+            scale_returnto = mode_live;
+            note_shift = 0;
+        }
+
+        if(p == 80)
+        {
+            if(v) note_shift = 1;
+            else note_shift = 0;
+
+            refresh();
+        }
+    }
+
     if(live_mode == live_session)
     {
-        if(p >= 96 && p <= 98) return;
+        if(p >= 96 && p <= 97) return;
 
         if (x == 0 || x == 9 || y == 0 || y == 9) 
         {
@@ -144,27 +190,31 @@ void live_surface_event(u8 p, u8 v, u8 x, u8 y)
 
 void live_midi_event(u8 port, u8 t, u8 ch, u8 p, u8 v)
 {
-    if(live_mode == live_session)
+    if(live_mode != custom_mode && custom_mode != custom_user1 && live_mode != custom_mode && custom_mode != custom_user2)
     {
         if(port != USBMIDI) return;
-        if(p >= 96 && p <= 98) return;
+        if(p >= 96 && p <= 97) return;
 
         switch (t) {
 			case 0x8:
 				v = 0;
 			
 			case 0x9:
-                rgb_out(p, palette[0][0][v], palette[0][1][v], palette[0][2][v]);
+                setLiveLed(p, palette[0][0][v], palette[0][1][v], palette[0][2][v]);
+
+                if(live_mode == live_session) rgb_out(p, palette[0][0][v], palette[0][1][v], palette[0][2][v]);
 				break;
 			
 			case 0xB:
-				rgb_out(p, palette[0][0][v], palette[0][1][v], palette[0][2][v]);
+				setLiveLed(p, palette[0][0][v], palette[0][1][v], palette[0][2][v]);
+
+                if(live_mode == live_session) rgb_out(p, palette[0][0][v], palette[0][1][v], palette[0][2][v]);
 				break;
 		}
         
-        if(p == 0 && v == 0) rgb_out(95, 0, 63, 0);
+        if(p == 0 && v == 0) if(live_mode == live_session) rgb_out(95, 0, 63, 0);
 
-        return;    
+        return;
     }
 
     u8 x = p % 10;

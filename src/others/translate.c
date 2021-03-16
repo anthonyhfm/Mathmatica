@@ -12,4 +12,5 @@ u8 translate_to_drum(u8 x)
 u8 translate_to_prog(u8 x)
 {
     return programmerLayout[x];
-}   
+}
+

@@ -4,36 +4,53 @@ u8 channel_scale[16] = {21, 22, 23, 24, 25, 26, 27, 28, 11, 12, 13, 14, 15, 16, 
 
 u8 finger_set = 4;
 
-u8 chromatic = 0;
+u8 chromatic = 1;
 
-u8 roots[12] = {51, 52, 53, 54, 55, 56, 57, 62, 63, 65, 66, 67};
-u8 preset_scales[16][7] = 
+u8 scale_scales[16][8] =
 {
-    {52, 63, 54, 55, 66, 67},
-    {52, 53, 54, 55, 56, 57},
-    {52, 63, 54, 55, 56, 67},
-    {62, 63, 54, 55, 66, 67},
-    {52, 53, 54, 55, 56, 67},
-    {52, 63, 54, 55, 56, 57},
-    {52, 63, 54, 55, 66, 57},
-    {52, 53, 63, 54, 55, 56, 67},
-    {63, 54, 55, 65, 67},
-    {63, 54, 55, 67},
-    {52, 63, 55, 65, 66, 57},
-    {52, 63, 55, 65, 56, 67},
-    {62, 53, 55, 65, 56, 57},
-    {62, 63, 54, 55, 65, 57},
-    {52, 53, 65, 66, 67},
-    {52, 63, 55, 66}
+    {0, 2, 3, 5, 7, 8, 10},
+    {0, 2, 4, 5, 7, 9, 11},
+    {0, 2, 3, 5, 7, 9, 10},
+    {0, 1, 3, 5, 7, 8, 10},
+    {0, 2, 4, 5, 7, 9, 10},
+    {0, 2, 3, 5, 7, 9, 11},
+    {0, 2, 3, 5, 7, 8, 11},
+    {0, 2, 3, 4, 5, 7, 9, 10},
+    {0, 3, 5, 6, 7, 10},
+    {0, 3, 5, 7, 10},
+    {0, 2, 3, 6, 7, 8, 11},
+    {0, 2, 3, 6, 7, 9, 10},
+    {0, 1, 4, 6, 7, 9, 11},
+    {1, 3, 5, 6, 7, 11},
+    {0, 2, 4, 6, 8, 10},
+    {0, 2, 3, 7, 8}
 };
 
-u8 root = 0;
+u8 roots[12] = 
+{
+    51, 
+    62, 
+    52, 
+    63, 
+    53, 
+    54, 
+    65, 
+    55, 
+    66, 
+    56, 
+    67, 
+    57
+};
+
+u8 scale_root = 0;
 
 u8 scale_channel = 0;
 u8 scale = 0;
 
 void scale_init()
 {
+    rgb_out(96, 63, 32 >> 2, 0);
+
     for(int i = 0; i < 16; i++) rgb_out(channel_scale[i], 63 >> 2, 63 >> 2, 16 >> 2);
     rgb_out(channel_scale[scale_channel], 63, 63, 16);
 
@@ -42,27 +59,20 @@ void scale_init()
 
     for(int i = 0; i < 12; i++) rgb_out(roots[i], 16, 16, 16);
 
-
-    
-
-    rgb_out(roots[0], 63, 0, 32);
-
-    for(int x = 0; x < 7; x++) rgb_out(preset_scales[scale][x], 17, 32, 63);
-
-    if(chromatic)
+    if(!chromatic)
     {
-        for(int i = 0; i < 5; i++) rgb_out(81 + i, 63, 32, 0);
+        for(int i = 0; i < 5; i++) rgb_out(81 + i, 63, 16, 0);
         rgb_out(81 + finger_set, 63, 63, 32);
-        rgb_out(88, 8, 63, 8);
+        rgb_out(88, 16, 63, 16);
     }
     else
     {
         for(int i = 0; i < 5; i++) rgb_out(81 + i, 16, 16, 16);
         rgb_out(81 + finger_set, 63, 63, 32);
-        rgb_out(88, 63, 8, 8);
+        rgb_out(88, 63, 0, 0);
     }
 
-    // rgb_out(roots[root], 17, 32, 63); // Blue glowing Root
+    rgb_out(roots[scale_root], 63, 0, 32);
 }
 
 void scale_timer_event()
@@ -75,6 +85,11 @@ void scale_surface_event(u8 p, u8 v, u8 x, u8 y)
     if(v)
     {
         if(p == 0)
+        {
+            update(scale_returnto);
+            return;
+        }
+        if(p == 96)
         {
             update(scale_returnto);
             return;
@@ -107,11 +122,11 @@ void scale_surface_event(u8 p, u8 v, u8 x, u8 y)
             }
         }
 
-        for(int i = 0; i < 12; i++)
+        for(int i = 0; i < 12; i++) // Root Notes
         {
             if(p == roots[i])
             {
-                root = i;
+                scale_root = i;
                 refresh();
             }
         }

@@ -6,6 +6,7 @@ This repository contains the source code of Mathmatica, a custom firmware for th
 ![Website status](https://img.shields.io/website?down_message=offline&up_color=blueviolet&up_message=online&url=https%3A%2F%2Fwww.314dragon.com%2F)
 ![Discord](https://img.shields.io/discord/760499946792157215?color=4e5d94&label=discord)
 ![GitHub issues](https://img.shields.io/github/issues/anthonyhfm/Mathmatica)
+![Code grade](https://www.code-inspector.com/project/20168/status/svg)
 
 ## Install
 The simplest way to install is via the flasher tool. Simply download the contents of the [flasher folder](https://github.com/anthonyhfm/Mathmatica/tree/performance/flasher). While not necessary to do so, it is recommended for you to close all apps using the Launchpad Pro.

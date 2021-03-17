@@ -49,6 +49,11 @@ u8 g_Buttons[BUTTON_COUNT] = {0};
 
 u8 mod[3] = {1, 2, 3};
 
+u8 GET_VELOCITY(void)
+{
+  return *(u8 *)(velocity_int + 3) & 0x7f;
+}
+
 void app_surface_event(u8 t, u8 p, u8 v)
 {
     

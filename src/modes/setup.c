@@ -2,6 +2,7 @@
 
 u8 jump = 0;
 u8 page = 0;
+u8 setup_shift = 0;
 
 #define page_led 0
 #define page_vel 1
@@ -186,6 +187,23 @@ void led_page_surface(u8 p, u8 v)
     }
 }
 
+void shift_options_led()
+{
+    if(mode_default == mode_legacy)
+    {
+        for(int i = 0; i < 8; i++) rgb_out(i + 11, 63 >> 2, 63 >> 2, 0);
+        for(int i = 0; i < 8; i++) rgb_out(i + 21, 63 >> 2, 63 >> 2, 0);
+    }
+}
+
+void shift_options_surface(u8 p, u8 v)
+{
+    if(v)
+    {
+        
+    }
+}
+
 void setup_init()
 {
     if(page == page_inv) return;
@@ -215,6 +233,14 @@ void setup_init()
             refresh();
             break;
     }
+
+    if(setup_shift)
+    {
+        rgb_out(80, 15, 32, 63);
+        for(int i = 0; i < 49; i++) rgb_out(i, 0, 0, 0);
+        shift_options_led();
+    }
+    else rgb_out(80, 15 >> 2, 32 >> 2, 63 >> 2);
 
     rgb_out(39, legacy_r >> 2, legacy_g >> 2, legacy_b >> 2);
     rgb_out(29, live_r >> 2, live_g >> 2, live_b >> 2);
@@ -261,6 +287,29 @@ void setup_timer_event()
 
 void setup_surface_event(u8 p, u8 v, u8 x, u8 y)
 {
+    if(setup_shift)
+    {
+        if(x >= 1 && x <= 8 && y >= 1 && y <= 4)
+        {
+            shift_options_surface(p, v);
+            return;
+        }
+    }
+
+    if(p == 80)
+    {
+        if(v)
+        {
+            setup_shift = 1;
+            refresh();
+        }
+        else
+        {
+            setup_shift = 0;
+            refresh();
+        }
+    }
+
     if(v)
     {
         jump = 1;

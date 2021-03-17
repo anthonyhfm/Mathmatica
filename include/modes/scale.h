@@ -16,6 +16,6 @@ void scale_poly_event(u8 p, u8 v);
 
 u8 scale_scales[16][8];
 
-u8 scale_returnto, scale_root, finger_set, scale;
+u8 scale_returnto, scale_root, finger_set, scale, chromatic;
 
 #endif

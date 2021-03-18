@@ -29,4 +29,9 @@ void legacy_midi_event(u8 port, u8 t, u8 ch, u8 p, u8 v)
     vel_out(translate_to_prog(p), v);
 }
 
+void legacy_aftertouch_event(u8 index, u8 value)
+{
+    aft_out(index, value);
+}
+
 void legacy_timer_event() {}

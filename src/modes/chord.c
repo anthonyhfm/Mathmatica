@@ -122,7 +122,7 @@ void chord_surface_event(u8 p, u8 v, u8 x, u8 y)
         if(chord_shift)
         {
             rgb_out(80, 63, 63, 63);
-            rgb_out(96, 63, 63, 63);
+            rgb_out(96, 63, 32 >> 2, 0);
         }
         else
         {

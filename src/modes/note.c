@@ -65,7 +65,13 @@ void DrawNotes()
 	}
 	else // Scale Mode LED
 	{
-
+		for(int i = 0; i < 8; i++)
+		{
+			if(i == 0)
+			{
+				
+			}
+		}
 	}
 
 

@@ -20,8 +20,9 @@ void legacy_surface_event(u8 p, u8 v, u8 x, u8 y)
 }
 
 void legacy_midi_event(u8 port, u8 t, u8 ch, u8 p, u8 v)
-{
+{  
     if(port == USBMIDI) return;
+    if (t != 0x8 && t != 0x9) return;
 
     if(t == 0x8) v = 0;
     

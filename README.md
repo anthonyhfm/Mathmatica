@@ -1,20 +1,32 @@
-# Mathmatica
-### The performance-optimized, custom firmware. 
-This repository contains the source code of Mathmatica, a custom firmware for the Launchpad Pro [MK2]. The firmware includes the new, MK3 setup menu, and adds a few other Launchpad cover optimized modes. It brings faster light updating speed, and the new keyboard mode. The firmware is easy to install, free to use and works with every project and DAW.
+<img width="450" height="150" align="left" style="float: left; margin: 0 5px 0 0;" alt="Mathmatica" src="https://user-images.githubusercontent.com/66474423/134778927-1ee09409-fea5-437c-82b5-c77a6ffbbd09.png">
 
-![GitHub language count](https://img.shields.io/github/languages/count/anthonyhfm/Mathmatica) 
-![Website status](https://img.shields.io/website?down_message=offline&up_color=blueviolet&up_message=online&url=https%3A%2F%2Fwww.314dragon.com%2F)
-![Discord](https://img.shields.io/discord/760499946792157215?color=4e5d94&label=discord)
-![GitHub issues](https://img.shields.io/github/issues/anthonyhfm/Mathmatica)
-![Code grade](https://www.code-inspector.com/project/20168/status/svg)
+# Mathmatica
+> The performance-optimized, custom firmware for Launchpad Pro.
+
+[![GitHub language count](https://img.shields.io/github/languages/count/anthonyhfm/Mathmatica)](https://github.com/anthonyhfm/mathmatica)
+[![Discord](https://img.shields.io/discord/760499946792157215?color=4e5d94&label=discord)](https://discord.com/invite/n7KHW5H)
+[![GitHub issues](https://img.shields.io/github/issues/anthonyhfm/Mathmatica)](https://github.com/anthonyhfm/mathmatica/issues)
+[![Code grade](https://www.code-inspector.com/project/20168/status/svg)](https://www.code-inspector.com/project/20168/status/svg)
+
+
+This repository contains the source code of Mathmatica, a custom firmware for the Launchpad Pro [MK2]. The firmware includes the new, MK3-series setup menu, and adds a few other Launchpad cover optimized modes. It brings faster light updating speed, and the new keyboard mode. The firmware is easy to install, free to use and works with every project and DAW.
 
 ## Install
-The simplest way to install is via the flasher tool. Simply download the contents of the [flasher folder](https://github.com/anthonyhfm/Mathmatica/tree/performance/flasher). While not necessary to do so, it is recommended for you to close all apps using the Launchpad Pro.
+The simplest way to install is via the flasher tool. Simply download the contents of the [flasher folder](https://github.com/anthonyhfm/Mathmatica/tree/performance/flasher). If a warning appears saying that it is from an unknown developer, simply click on the more info button and click on run anyway. While not necessary to do so, it is recommended for you to close all apps using Launchpad Pro.
 
 An alternative way to do it is using [mat1jaczyyy's Launchpad Utility](https://fw.mat1jaczyyy.com/). To upload the Mathmatica firmware to [mat1jaczyyy's Launchpad Utility](https://fw.mat1jaczyyy.com/), press the following keys in the following sequence. [Up Arrow], [Up Arrow], [Down Arrow], [Down Arrow], [Left Arrow], [Right Arrow], [Left Arrow], [Right Arrow]. An option to use a custom SysEx file should appear. Upload the Mathmatica firmware file from the pop-up.
 
 ## Usage
-The legacy mode is optimized for Launchpad covers. It includes built-in top lights eliminating the need of a top lights plugin. This also allows you to put samples on the top row. Also included is a new boot animation, which can be skipped by pressing the Setup button while it is displaying. The Live mode allows you to use Ableton Live integration. The modes in Live mode is a port from the new MK3 series. If you want to use any of the other modes (legacy and programmer), all you need to do is set the track inputs/outputs to the standalone port and the appropriate channel for the mode. Note that on Windows, the standalone port displays itself as "Launchpad Open" or "x- Launchpad Open" and the MIDI port displays itself as "Launchpad Open (Port 2)" or "MIDIIN2 (x- Launchpad Open)". 
+Mathmatica introduces the MK3-series style of setup menu to Launchpad Pro, and introduces two new modes. The two new modes are called Legacy Mode, which is the purple side button, and the MK3-series styled Live mode. 
+
+### Legacy Mode
+Legacy mode is designed for Launchpad projects and covers. It displays the lights at fastest possible speed. It also implements built-in top lights, which eliminate s the requirement for a plugin, and also allows the user to place samples and build effects on the top row directly. Also included is a new boot animation, which can be bypassed by clicking the Setup button while displaying.
+
+### Live Mode
+The Live mode allows you to control Ableton Live directly from your Launchpad. The modes in Live mode is a port from the new MK3-series of Launchpads. This includes the new Live mode, the note mode, and custom modes, with the ability to add your own custom modes coming soon.
+
+### Other modes
+If you want to use any of the other modes (legacy and programmer), all you need to do is set the track inputs/outputs to the standalone port and the appropriate channel for the mode. Note that on Windows, the standalone port displays itself as "Launchpad Open" or "x- Launchpad Open" and the MIDI port displays itself as "Launchpad Open (Port 2)" or "MIDIIN2 (x- Launchpad Open)". 
 
 | Mode        | Port        |
 | ----------- | ----------- |
@@ -22,8 +34,10 @@ The legacy mode is optimized for Launchpad covers. It includes built-in top ligh
 | Live        | MIDI        |
 | Programmer  | Standalone  |
 
-## Guide
-You can click [here](https://drive.google.com/file/d/19jlDuHY_tf0r4qOTz5fD8Y76C6XeIqXa/view?usp=sharing) for the full guide.
+### Settings
+On the side, there are four categories of settings, from top-to-bottom order, lights options, velocity control, aftertouch preferences, and fader mode settings. The lights category has controls for the rotation (at the top row), brightness, custom palettes, and a quiet mode. The velocity category, has just one option, which is on or off. When it is turned on, a setting will appear below it, from left-to-right order, low sensitivity, medium sensitivity, and high sensitivity. The aftertouch category has three options, from left-to-right order, disabled, channel aftertouch, and polyphonic aftertouch. When clicking on one of the green buttons, a setting will appear below it, with the same settings as velocity. For fader category, it is only a placeholder as of right now.
+
+For a spreadsheet representation of the UI, you can [click here](https://drive.google.com/file/d/19jlDuHY_tf0r4qOTz5fD8Y76C6XeIqXa/view?usp=sharing).
 
 ## Build
 The Launchpad Pro uses SysEx messages embedded into `.syx` files in order to update its firmware. In case you are lazy to build the firmware yourself, you can find the latest firmware build in this repository at `build/mathmatica.syx` or you can click [here](https://raw.githubusercontent.com/anthonyhfm/Mathmatica/performance/build/Mathmatica.syx) to download the latest build.
